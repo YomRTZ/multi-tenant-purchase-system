@@ -42,8 +42,9 @@ Insert order
 Insert order_items
 Insert credit ledger
    ↓
-COMMIT(success)
+COMMIT (success)
 If anything fails → ROLLBACK
+
 ### Pseudocode for the above purchase flow
 function purchaseOnCredit(customerId, productId, quantity):
     businessId = getBusinessIdFromProfile(currentUser)
