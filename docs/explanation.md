@@ -44,6 +44,26 @@ Insert credit ledger
    ↓
 COMMIT(success)
 If anything fails → ROLLBACK
+--- Pseudocode for the above purchase flow
+function purchaseOnCredit(customerId, productId, quantity):
+    businessId = getBusinessIdFromProfile(currentUser)
+    
+    BEGIN TRANSACTION
+        Lock product row FOR UPDATE
+        Lock customer row FOR UPDATE
+
+        if product.stock < quantity:
+            throw "Insufficient stock"
+        if customer.credit + product.price * quantity > customer.credit_limit:
+            throw "Credit limit exceeded"
+
+        insert into orders
+        insert into order_items
+        update product stock
+        update customer credit
+        log credit transaction
+    COMMIT
+
 ---
 
 ## Key Concepts
