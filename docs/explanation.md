@@ -44,7 +44,7 @@ Insert credit ledger
    ↓
 COMMIT(success)
 If anything fails → ROLLBACK
---- Pseudocode for the above purchase flow
+### Pseudocode for the above purchase flow
 function purchaseOnCredit(customerId, productId, quantity):
     businessId = getBusinessIdFromProfile(currentUser)
     
@@ -86,7 +86,6 @@ function purchaseOnCredit(customerId, productId, quantity):
 - Each row has `business_id`  
 - **RLS (Row-Level Security)** ensures one business cannot access another business’s data  
 
----
 
 ## Validation Layers 
 
@@ -104,16 +103,15 @@ function purchaseOnCredit(customerId, productId, quantity):
 ```sql
 ALTER TABLE products ADD CONSTRAINT chk_stock CHECK (stock_quantity >= 0);
 ALTER TABLE customers ADD CONSTRAINT chk_credit CHECK (current_credit >= 0);
+---
 
-### Indexes for performance
+## Indexes for performance
 CREATE INDEX idx_products_business ON products(business_id);
 CREATE INDEX idx_customers_business ON customers(business_id);
 
-### Prevent accidental deletes of financial data
+##  Prevent accidental deletes of financial data
 REVOKE DELETE ON credit_transactions FROM authenticated;
 # Multi-Tenant Purchase-on-Credit System — Concurrency & Safety
-
-
 
 ---
 
