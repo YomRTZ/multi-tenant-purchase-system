@@ -23,7 +23,7 @@ A single customer purchase on credit must:
 **Backend:** Supabase + PostgreSQL (RPC functions with transactions)  
 
 **Purchase Flow:**
-
+```markdown
 Client (Next.js)
    ↓
 Supabase RPC function
