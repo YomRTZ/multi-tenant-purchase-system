@@ -44,6 +44,8 @@ Insert credit ledger
    ↓
 COMMIT (success)
 If anything fails → ROLLBACK
+```
+--- 
 
 ### Pseudocode for the above purchase flow
 function purchaseOnCredit(customerId, productId, quantity):
@@ -104,6 +106,8 @@ function purchaseOnCredit(customerId, productId, quantity):
 ```sql
 ALTER TABLE products ADD CONSTRAINT chk_stock CHECK (stock_quantity >= 0);
 ALTER TABLE customers ADD CONSTRAINT chk_credit CHECK (current_credit >= 0);
+
+```
 ---
 
 ## Indexes for performance
